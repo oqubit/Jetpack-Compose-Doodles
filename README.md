@@ -1,5 +1,5 @@
 ## 🎨 Jetpack Compose Doodles
-- Here lies my experimentations with Jetpack Compose 👽
+- Here are my Jetpack Compose doodles 👽
 
 ## Media
 <table style="width:100%">
