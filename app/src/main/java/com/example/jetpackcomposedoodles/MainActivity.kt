@@ -4,13 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.jetpackcomposedoodles.ui.theme.JetpackComposeDoodlesTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +17,20 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             JetpackComposeDoodlesTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                val navController = rememberNavController()
+                NavigationAppHost(navController = navController)
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+sealed class Destination(val route: String) {
+    data object HomeScreen : Destination("home_screen")
 }
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    JetpackComposeDoodlesTheme {
-        Greeting("Android")
-    }
+fun NavigationAppHost(navController: NavHostController) {
+   NavHost(navController= navController, startDestination = "home_screen") {
+       composable(Destination.HomeScreen.route) { HomeScreen(navController) }
+   }
 }
