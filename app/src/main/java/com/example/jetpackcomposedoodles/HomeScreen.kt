@@ -41,8 +41,8 @@ fun HomeScreen(navController: NavHostController) {
                     modifier = Modifier.align(alignment = Alignment.Center)
                 )
             }
-            Button(onClick = { navController.navigate(Destination.HomeScreen.route) }) {
-                Text(text = "Screen 1")
+            Button(onClick = { navController.navigate(Destination.HoneycombScreen.route) }) {
+                Text(text = "Honeycomb Screen")
             }
             Button(onClick = { navController.navigate(Destination.HomeScreen.route) }) {
                 Text(text = "Screen 2")
