@@ -1,5 +1,6 @@
 package com.example.jetpackcomposedoodles
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -31,15 +32,38 @@ fun HomeScreen(navController: NavHostController) {
                     .fillMaxWidth()
                     .fillMaxHeight(0.6f)
             ) {
-                Text(
-                    text = "Home Screen",
-                    style = TextStyle(
-                        brush = Brush.linearGradient(listOf(Color(0xFF0F6FFF), Color(0xFF77FFA9))),
-                        fontWeight = FontWeight.ExtraBold,
-                        fontSize = 50.sp
-                    ),
-                    modifier = Modifier.align(alignment = Alignment.Center)
-                )
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Home Screen",
+                        style = TextStyle(
+                            brush = Brush.linearGradient(
+                                listOf(
+                                    Color(0xFF0F6FFF),
+                                    Color(0xFF77FFA9)
+                                )
+                            ),
+                            fontWeight = FontWeight.ExtraBold,
+                            fontSize = 50.sp
+                        )
+                    )
+                    Text(
+                        text = "Select a doodle",
+                        style = TextStyle(
+                            brush = Brush.linearGradient(
+                                listOf(
+                                    Color(0xFFFF2848),
+                                    Color(0xFFFFC900)
+                                )
+                            ),
+                            fontWeight = FontWeight.ExtraBold,
+                            fontSize = 20.sp
+                        )
+                    )
+                }
             }
             Button(onClick = { navController.navigate(Destination.HoneycombScreen.route) }) {
                 Text(text = "Honeycomb Screen")
