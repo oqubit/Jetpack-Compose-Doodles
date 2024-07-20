@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.jetpackcomposedoodles.doodles.CircularHoneycombScreen
 import com.example.jetpackcomposedoodles.doodles.HoneycombScreen
 import com.example.jetpackcomposedoodles.ui.theme.JetpackComposeDoodlesTheme
 
@@ -28,6 +29,7 @@ class MainActivity : ComponentActivity() {
 sealed class Destination(val route: String) {
     data object HomeScreen : Destination("home_screen")
     data object HoneycombScreen : Destination("honeycomb_screen")
+    data object CircularHoneycombScreen : Destination("circular_honeycomb_screen")
 }
 
 @Composable
@@ -35,5 +37,6 @@ fun NavigationAppHost(navController: NavHostController) {
    NavHost(navController= navController, startDestination = "home_screen") {
        composable(Destination.HomeScreen.route) { HomeScreen(navController) }
        composable(Destination.HoneycombScreen.route) { HoneycombScreen() }
+       composable(Destination.CircularHoneycombScreen.route) { CircularHoneycombScreen() }
    }
 }
