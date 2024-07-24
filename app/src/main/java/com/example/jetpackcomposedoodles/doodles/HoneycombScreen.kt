@@ -39,6 +39,8 @@ import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.asComposePath
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
@@ -49,6 +51,20 @@ import androidx.graphics.shapes.RoundedPolygon
 import androidx.graphics.shapes.star
 import androidx.graphics.shapes.toPath
 import kotlin.math.sqrt
+
+// @PreviewScreenSizes
+/**
+ * Same as @PreviewScreenSizes, but with showSystemUi disabled.
+ * Currently showSystemUi adds extra empty space only visible in Preview mode,
+ * which messes with the spacing of auto-sized hex tiles (Option 1),
+ * especially in Landscape mode, as the extra empty space is likely making
+ * screenWidthDp incorrect, which hex-tile layout spacing relies on.
+ */
+@Preview(name = "Phone", device = "spec:id=reference_phone,shape=Normal,width=411,height=891,unit=dp,dpi=420", showSystemUi = false)
+@Preview(name = "Phone - Landscape", device = "spec:width=411dp, height=891dp, orientation=landscape, dpi=420", showSystemUi = false)
+@Preview(name = "Unfolded Foldable", device = "spec:id=reference_foldable,shape=Normal,width=673,height=841,unit=dp,dpi=420", showSystemUi = false)
+@Preview(name = "Tablet", device = "spec:id=reference_tablet,shape=Normal,width=1280,height=800,unit=dp,dpi=240", showSystemUi = false)
+@Preview(name = "Desktop", device = "spec:id=reference_desktop,shape=Normal,width=1920,height=1080,unit=dp,dpi=160", showSystemUi = false)
 
 @Composable
 fun HoneycombScreen() {
@@ -103,7 +119,7 @@ fun HoneycombUI(
      * Option 2: Fixed size hex tiles
      */
     val hexSize = 200f.coerceIn(0f, hexSizeMax)
-    val spacingWidth = 3f / 4f * (hexSize + gapSize) * (2.333f)
+    val spacingWidth = 3f / 4f * (hexSize + gapSize) * 2.333f
     /** ^^^^^^^^^^^^
      * 7 screen divides (made by 2 hex columns)
      * 2.333f includes the 7th divide (2/6 = 0.333...)
